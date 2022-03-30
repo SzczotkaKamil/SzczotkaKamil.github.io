@@ -28,8 +28,7 @@
 
 
 <script>
-    var pos_latitude = 0
-    var pos_longitude = 0
+    getLocation()
 
     function getLocation() {
       if (navigator.geolocation) {
@@ -40,19 +39,21 @@
     }
     
     function showPosition(position) {
-        pos_latitude = position.coords.latitude
-        pos_longitude = position.coords.longitude
+        var pos_latitude = position.coords.latitude
+        var pos_longitude = position.coords.longitude
+
+        var mapOptions = {
+           center: [pos_latitude, pos_longitude],
+           zoom: 18
+        }
+        var map = new L.map('map', mapOptions);
+        var layer = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+        map.addLayer(layer);
 
     }
     
     
-        var mapOptions = {
-           center: [17.385044, 78.486671],
-           zoom: 4
-        }
-        var map = new L.map('map', mapOptions);
-        var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-        map.addLayer(layer);
+
      </script>
 </body>
 </html>
